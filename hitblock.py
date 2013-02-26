@@ -17,7 +17,8 @@ from subprocess import Popen, PIPE
 from mcServer import mcpi
 
 
-
+#When the script runs, tmp file exists
+#scripts calling this one should check if this file exists
 tmp = open("/home/pi/minecraft/mcpi/api/python/mcpi/tmp", "a")
 tmp.write("Pianobar Remote Running")
 tmp.close()
@@ -40,12 +41,14 @@ def isThisProcessRunning( process_name ):
 	return output
 
 
+#setup variables for main loop
 exit = False 	#exit for main while loop, if Pianobar isn't running program should exit
 paused = False	#variable to keep track of play/pause state of Pianobar. Could easily get out of sync
 counter = 0
 PianobarRunning = isThisProcessRunning('pianobar')
 
 
+#main loop wating for block hit events, should exit if pianobar is not running
 while not exit | (not PianobarRunning):
 	hits = mcpi.events.pollBlockHits()
 	
