@@ -130,7 +130,7 @@ def mcSkyWrite(sinput,x,y,z,blockID):
 		#After each word
 		drawLetter(blank, x+characters*4, topline-7*line, z, blockID)
 		characters = characters + 1
-	#After all words are drawn, clear the rest of the current line and the next line
+	#After all words are drawn, clear the rest of the current line and the next few lines
 	mcpi.setBlocks(x+characters*4,topline-7*line,z,x+linewidth*4,topline-7*line+5,z,0)
 	line = line + 1
 	characters = 0
